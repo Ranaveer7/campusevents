@@ -1,0 +1,96 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type EventCategory__543662769 =
+  {#academic; #cultural; #other; #social; #sports; #technical};
+type EventId__361868567 = Nat;
+type Event__543096582 =
+  {
+    capacity : Nat;
+    category : EventCategory__543662769;
+    createdAt : Timestamp__301639476;
+    createdBy : UserId__158757552;
+    date : Text;
+    department : Text;
+    description : Text;
+    id : EventId__361868567;
+    location : Text;
+    name : Text;
+    registrationCount : Nat;
+    time : Text
+  };
+type FeedbackId__890545752 = Nat;
+type Feedback__34322984 =
+  {
+    comment : Text;
+    eventId : EventId__361868567;
+    id : FeedbackId__890545752;
+    rating : Nat;
+    submittedAt : Timestamp__301639476;
+    userId : UserId__158757552
+  };
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type RegistrationId__98818712 = Nat;
+type RegistrationStatus__1020636043 = {#cancelled; #registered};
+type Registration__715633958 =
+  {
+    eventId : EventId__361868567;
+    id : RegistrationId__98818712;
+    registrationDate : Timestamp__301639476;
+    status : RegistrationStatus__1020636043;
+    userId : UserId__158757552
+  };
+type Timestamp__301639476 = Int;
+type UserId__158757552 = Principal;
+type UserProfile__277265826 =
+  {
+    createdAt : Timestamp__301639476;
+    email : Text;
+    name : Text;
+    role : UserRole__451090586
+  };
+type UserRole__1073662873 = {#admin; #guest; #user};
+type UserRole__451090586 = {#admin; #student};
+actor {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__1073662873>
+    };
+  stable events :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Event__543096582]];
+      var elementIndex : Nat__490723111
+    };
+  stable feedbackList :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Feedback__34322984]];
+      var elementIndex : Nat__490723111
+    };
+  stable nextEventId : {var value : Nat};
+  stable nextFeedbackId : {var value : Nat};
+  stable nextRegistrationId : {var value : Nat};
+  stable registrations :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Registration__715633958]];
+      var elementIndex : Nat__490723111
+    };
+  stable userProfiles :
+    {
+      var root : Node__46230540<Principal, UserProfile__277265826>;
+      var size : Nat__490723111
+    }
+};

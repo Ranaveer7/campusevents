@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "DM Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.75rem;
+
+    --background: 0.99 0.005 260;
+    --foreground: 0.15 0.01 260;
+    --card: 1.0 0.0 0;
+    --card-foreground: 0.15 0.01 260;
+    --popover: 1.0 0.0 0;
+    --popover-foreground: 0.15 0.01 260;
+
+    --primary: 0.45 0.2 265;
+    --primary-foreground: 0.98 0.005 265;
+
+    --secondary: 0.95 0.01 260;
+    --secondary-foreground: 0.25 0.01 260;
+    --muted: 0.95 0.01 260;
+    --muted-foreground: 0.5 0.01 260;
+
+    --accent: 0.45 0.2 265;
+    --accent-foreground: 0.98 0.005 265;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0.005 25;
+
+    --border: 0.9 0.01 260;
+    --input: 0.9 0.01 260;
+    --ring: 0.45 0.2 265;
+
+    --chart-1: 0.7 0.24 300;
+    --chart-2: 0.65 0.22 320;
+    --chart-3: 0.68 0.2 270;
+    --chart-4: 0.72 0.19 0;
+    --chart-5: 0.62 0.25 40;
+
+    --sidebar: 0.98 0 0;
+    --sidebar-foreground: 0.15 0 0;
+    --sidebar-primary: 0.45 0.2 265;
+    --sidebar-primary-foreground: 0.98 0.005 265;
+    --sidebar-accent: 0.95 0 0;
+    --sidebar-accent-foreground: 0.25 0 0;
+    --sidebar-border: 0.9 0 0;
+    --sidebar-ring: 0.45 0.2 265;
+  }
+
+  .dark {
+    --background: 0.12 0.01 260;
+    --foreground: 0.93 0.01 260;
+    --card: 0.18 0.015 260;
+    --card-foreground: 0.93 0.01 260;
+    --popover: 0.22 0.015 260;
+    --popover-foreground: 0.93 0.01 260;
+
+    --primary: 0.68 0.24 300;
+    --primary-foreground: 0.12 0.01 300;
+
+    --secondary: 0.22 0.02 260;
+    --secondary-foreground: 0.85 0.01 260;
+    --muted: 0.22 0.02 260;
+    --muted-foreground: 0.55 0.01 260;
+
+    --accent: 0.7 0.23 320;
+    --accent-foreground: 0.12 0.01 320;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.93 0.01 22;
+
+    --border: 0.28 0.015 260;
+    --input: 0.28 0.015 260;
+    --ring: 0.68 0.24 300;
+
+    --chart-1: 0.7 0.25 300;
+    --chart-2: 0.72 0.26 320;
+    --chart-3: 0.68 0.22 270;
+    --chart-4: 0.75 0.21 0;
+    --chart-5: 0.68 0.27 40;
+
+    --sidebar: 0.16 0.01 260;
+    --sidebar-foreground: 0.93 0.01 260;
+    --sidebar-primary: 0.68 0.24 300;
+    --sidebar-primary-foreground: 0.12 0.01 300;
+    --sidebar-accent: 0.22 0.02 260;
+    --sidebar-accent-foreground: 0.85 0.01 260;
+    --sidebar-border: 0.26 0.015 260;
+    --sidebar-ring: 0.68 0.24 300;
+
+    --gradient-neon-cyan: linear-gradient(
+      135deg,
+      oklch(0.7 0.22 290),
+      oklch(0.68 0.24 300)
+    );
+    --gradient-neon-magenta: linear-gradient(
+      135deg,
+      oklch(0.65 0.25 320),
+      oklch(0.62 0.26 310)
+    );
+    --gradient-neon-purple: linear-gradient(
+      135deg,
+      oklch(0.68 0.23 280),
+      oklch(0.65 0.24 290)
+    );
+    --shadow-glass-sm: 0 8px 32px rgba(0, 0, 0, 0.1), inset 1px 1px 0
+      rgba(255, 255, 255, 0.1);
+    --shadow-glass-md: 0 20px 48px rgba(0, 0, 0, 0.2), inset 1px 1px 0
+      rgba(255, 255, 255, 0.15);
+    --shadow-glass-lg: 0 32px 64px rgba(0, 0, 0, 0.3), inset 1px 1px 0
+      rgba(255, 255, 255, 0.1);
+    --shadow-glow-cyan: 0 0 20px rgba(102, 204, 255, 0.3);
+    --shadow-glow-magenta: 0 0 20px rgba(255, 102, 204, 0.3);
+    --shadow-glow-purple: 0 0 20px rgba(153, 102, 255, 0.3);
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: oklch(0.18 0.015 260 / 0.8);
+    @apply border border-border/20 rounded-xl shadow-lg;
+  }
+
+  .glass-card-dark {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    background: oklch(0.18 0.015 260 / 0.5);
+    @apply border border-white/10 rounded-lg;
+  }
+
+  .glass-hover {
+    @apply transition-smooth hover:border-white/30 hover:shadow-glass-md hover:scale-105;
+  }
+
+  .gradient-cyan-neon {
+    @apply bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-500;
+  }
+
+  .gradient-magenta-neon {
+    @apply bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500;
+  }
+
+  .gradient-purple-neon {
+    @apply bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500;
+  }
+
+  .glow-cyan {
+    @apply shadow-[0_0_20px_rgba(102,204,255,0.3)];
+  }
+
+  .glow-magenta {
+    @apply shadow-[0_0_20px_rgba(255,102,204,0.3)];
+  }
+
+  .glow-purple {
+    @apply shadow-[0_0_20px_rgba(153,102,255,0.3)];
+  }
+
+  .neon-border-cyan {
+    @apply border border-cyan-400/50 hover:border-cyan-400 transition-smooth hover:glow-cyan;
+  }
+
+  .neon-border-magenta {
+    @apply border border-pink-500/50 hover:border-pink-500 transition-smooth hover:glow-magenta;
+  }
+
+  .neon-border-purple {
+    @apply border border-purple-500/50 hover:border-purple-500 transition-smooth hover:glow-purple;
+  }
+
+  .button-neon {
+    @apply px-4 py-2 rounded-lg font-semibold transition-smooth hover:scale-105 hover:shadow-lg active:scale-95;
+  }
+
+  .button-cyan {
+    @apply button-neon bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-900 hover:glow-cyan;
+  }
+
+  .button-magenta {
+    @apply button-neon bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:glow-magenta;
+  }
+
+  .button-purple {
+    @apply button-neon bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:glow-purple;
+  }
+
+  .sidebar-collapsible {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.4s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stagger-item {
+    animation: fadeIn 0.4s ease-in;
+  }
+
+  .stagger-item:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-item:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-item:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-item:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+}

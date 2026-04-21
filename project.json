@@ -1,0 +1,26 @@
+{
+  "overview": "CampusEvents is a full-stack Smart Campus Event Management System with role-based access for Admins and Students. Features a modern dark glassmorphism UI with neon gradient accents, complete event CRUD, registration management, analytics dashboards with charts, and a feedback system.",
+  "features": [
+    "Role-based login (Admin & Student) via Internet Identity",
+    "Admin Dashboard with KPI cards, pie chart, and bar chart",
+    "Student Dashboard with event stats and quick actions",
+    "Event browser with search, filters, and pagination",
+    "Admin event CRUD with form validation",
+    "My Registrations with cancellation confirmation",
+    "Feedback submission (Student) and review (Admin)",
+    "Analytics & Reports with Recharts visualizations",
+    "Collapsible sidebar navigation",
+    "Dark glassmorphism UI with neon gradients and smooth animations"
+  ],
+  "category": "productivity",
+  "tags": [
+    "campus",
+    "events",
+    "management",
+    "dashboard",
+    "analytics",
+    "role-based",
+    "glassmorphism"
+  ],
+  "last_updated": "2026-04-21T17:23:21.468Z"
+}

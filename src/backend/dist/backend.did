@@ -1,0 +1,157 @@
+type UserRole__1 = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserRole = 
+ variant {
+   admin;
+   student;
+ };
+type UserProfile = 
+ record {
+   createdAt: Timestamp;
+   email: text;
+   name: text;
+   role: UserRole;
+ };
+type UserId = principal;
+type UpdateEventRequest = 
+ record {
+   capacity: nat;
+   category: EventCategory;
+   date: text;
+   department: text;
+   description: text;
+   id: EventId;
+   location: text;
+   name: text;
+   time: text;
+ };
+type Timestamp = int;
+type RegistrationsPerMonth = 
+ record {
+   count: nat;
+   month: text;
+ };
+type RegistrationsPerEvent = 
+ record {
+   count: nat;
+   eventId: EventId;
+   eventName: text;
+ };
+type RegistrationsPerCategory = 
+ record {
+   category: text;
+   count: nat;
+ };
+type RegistrationStatus = 
+ variant {
+   cancelled;
+   registered;
+ };
+type RegistrationId = nat;
+type Registration = 
+ record {
+   eventId: EventId;
+   id: RegistrationId;
+   registrationDate: Timestamp;
+   status: RegistrationStatus;
+   userId: UserId;
+ };
+type FeedbackId = nat;
+type Feedback = 
+ record {
+   comment: text;
+   eventId: EventId;
+   id: FeedbackId;
+   rating: nat;
+   submittedAt: Timestamp;
+   userId: UserId;
+ };
+type EventId = nat;
+type EventCategory = 
+ variant {
+   academic;
+   cultural;
+   other;
+   social;
+   sports;
+   technical;
+ };
+type Event = 
+ record {
+   capacity: nat;
+   category: EventCategory;
+   createdAt: Timestamp;
+   createdBy: UserId;
+   date: text;
+   department: text;
+   description: text;
+   id: EventId;
+   location: text;
+   name: text;
+   registrationCount: nat;
+   time: text;
+ };
+type CreateEventRequest = 
+ record {
+   capacity: nat;
+   category: EventCategory;
+   date: text;
+   department: text;
+   description: text;
+   location: text;
+   name: text;
+   time: text;
+ };
+type AverageRatingByEvent = 
+ record {
+   averageRating: float64;
+   eventId: EventId;
+   eventName: text;
+   totalFeedback: nat;
+ };
+type AnalyticsResult = 
+ record {
+   averageRatingsByEvent: vec AverageRatingByEvent;
+   registrationsPerCategory: vec RegistrationsPerCategory;
+   registrationsPerEvent: vec RegistrationsPerEvent;
+   registrationsPerMonth: vec RegistrationsPerMonth;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  assignCallerUserRole: (user: principal, role: UserRole__1) -> ();
+  cancelRegistration: (registrationId: RegistrationId) -> (bool);
+  createEvent: (req: CreateEventRequest) -> (Event);
+  deleteEvent: (eventId: EventId) -> (bool);
+  deleteFeedback: (feedbackId: FeedbackId) -> (bool);
+  getAnalytics: () -> (AnalyticsResult) query;
+  getAverageRating: () -> (vec AverageRatingByEvent) query;
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole__1) query;
+  getEvent: (eventId: EventId) -> (opt Event) query;
+  getFeedbackByUser: () -> (vec Feedback) query;
+  getFeedbackForEvent: (eventId: EventId) -> (vec Feedback) query;
+  getProfile: (user: principal) -> (opt UserProfile) query;
+  getRegistration: (registrationId: RegistrationId) ->
+   (opt Registration) query;
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  isCallerAdmin: () -> (bool) query;
+  listAllFeedback: () -> (vec Feedback) query;
+  listEvents: () -> (vec Event) query;
+  listRegistrations: () -> (vec Registration) query;
+  listRegistrationsByEvent: (eventId: EventId) -> (vec Registration) query;
+  listRegistrationsByUser: () -> (vec Registration) query;
+  listUsers: () -> (vec record {
+                          UserId;
+                          UserProfile;
+                        }) query;
+  registerForEvent: (eventId: EventId) -> (Registration);
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  submitFeedback: (eventId: EventId, rating: nat, comment: text) ->
+   (Feedback);
+  updateEvent: (req: UpdateEventRequest) -> (bool);
+  updateProfile: (profile: UserProfile) -> ();
+}
